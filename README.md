@@ -4,7 +4,12 @@
  - They check if your work functions as intended.
  - Constantly validating that you are writing code that works is essential to the health of your application and your team’s sanity.
 
+
+<iframe src="//giphy.com/embed/ADrhl0KuYglYA" width="480" height="316" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="http://giphy.com/gifs/ADrhl0KuYglYA">via GIPHY</a></p>
+
 Testing Guidelines
+
+
 Test 1
 Should be able to create a new game.
 Can roll a gutter game.
