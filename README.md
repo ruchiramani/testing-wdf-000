@@ -2,9 +2,38 @@
  **Rspec.** *What is it good for?*
 
 - Tests check if your work functions as intended.
+- Ensure that new features do not break existing functionality.
 - Constantly validating that you are writing code that works is essential to the health of your application and your team’s sanity.
+- **Rspec Resources**
+
+    http://code.tutsplus.com/articles/rspec-testing-for-beginners-part-1--cms-26716
+
+    http://betterspecs.org
+
+    http://tutorials.jumpstartlab.com/topics/internal_testing/rspec_practices.html
+
+    http://blog.carbonfive.com/2010/10/21/rspec-best-practices/
 
 
+You've seen a lot of tests. They generally are broken down into 3 phases. *Setup, Trigger, and Expectation*.  Sometimes one or more of these steps will be combined. Sometimes you will need an additional *Breakdown* phase to make sure you are starting fresh on the next test-- you have to clear your database or associations.
+
+Here's a typical example of an Rspec test:
+```ruby
+describe '#songs' do
+    it 'keeps track of an artist\'s songs' do
+      # Setup (make some songs)
+      song_one = Song.new("Rock With You")
+      song_two = Song.new("Smooth Criminal")
+
+      # Trigger - actually call our method ('artist' comes from a 'let' block defined at the top of the spec.)
+      artist.add_song(song_one)
+      artist.add_song(song_two)
+
+      # expectations
+      expect(artist.songs).to eq([song_one, song_two])
+    end
+  end
+```
 
 
 <iframe src="//giphy.com/embed/ADrhl0KuYglYA" width="480" height="316" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="http://giphy.com/gifs/ADrhl0KuYglYA">via GIPHY</a></p>
@@ -72,7 +101,6 @@ Your job is to write an implementation of the `Game` class that can pass these t
 
 
 Resources -
-
 
     http://code.tutsplus.com/articles/rspec-testing-for-beginners-part-1--cms-26716
 
