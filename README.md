@@ -2,6 +2,7 @@
  **Rspec.** *What is it good for?*
  ![test gif](http://i.giphy.com/geozuBY5Y6cXm.gif)
 
+
 - Tests check if your work functions as intended.
 - Ensure that new features do not break existing functionality.
 - Constantly validating that you are writing code that works is essential to the health of your application and your team’s sanity.
@@ -102,3 +103,5 @@ Your job is to write an implementation of the `Game` class that can pass these t
 - Can roll a perfect game.
 - The player throws 12 stikes.
 - The score should be 300.
+
+Good luck!
