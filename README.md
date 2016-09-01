@@ -7,7 +7,8 @@
 
 <iframe src="//giphy.com/embed/ADrhl0KuYglYA" width="480" height="316" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="http://giphy.com/gifs/ADrhl0KuYglYA">via GIPHY</a></p>
 
-Testing Guidelines
+
+Testing requirements.
 
 
 Test 1
@@ -31,8 +32,6 @@ The score should be 24.s
 Test 5
 Can roll a perfect game.
 The player throws 12 stikes and the score should be 300.
-
-
 
 
 
