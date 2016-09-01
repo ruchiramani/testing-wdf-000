@@ -17,6 +17,7 @@
     http://blog.carbonfive.com/2010/10/21/rspec-best-practices/
 
 
+
 You've seen a lot of tests. They generally are broken down into 3 phases. *Setup, Trigger, and Expectation*.  Sometimes one or more of these steps will be combined. Sometimes you will need an additional *Breakdown* phase to make sure you are starting fresh on the next test-- you have to clear your database or associations.
 
 Here's a typical example of an Rspec test with the phases labeled:
@@ -74,7 +75,7 @@ Your task will also include writing the specs for this code.  Use the resources 
 
 Your job is to write an implementation of the `Game` class that can pass these tests in this order.  You should write each test and then write the code that will make the test pass.  When the test passes you should move on to the next test. Write the test, make it pass, repeat. Ensure that previous tests don't break when trying to pass the next test.
 
-*Do not try to over-implement! Don't be worrying about strike functionality when trying to pass Test 1. Focus on passing the current test with the minimum amount of struggle, this is **Test Driven Development.*** *The tests will drive your implementation forward.*  
+*Do not try to over-implement! Don't be worrying about strike functionality when trying to pass Test 1. Focus on passing the current test with the minimum amount of struggle, this is __Test Driven Development__. The tests will drive your implementation forward.*  
 
 
 **Test 0**
