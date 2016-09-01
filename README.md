@@ -45,6 +45,8 @@ describe '#songs' do
 
 ![bowling gif](http://i.giphy.com/ADrhl0KuYglYA.gif)
 
+![score png](images/score.png)
+
 A game of 10-pin bowling consists of 10 frames in which the player attempts to knock down as many pins as possible.  Each frame is made up of 2 rolls.  Generally, the player is awarded one point for every pin knocked down. A **gutter ball** is the term for a roll in which 0 pins were knocked down.
 
 A **spare** is when a player knocks down all 10 pins across the two rolls that make up a frame (i.e. on the first roll 7 pins were knocked down and on the second roll the remaining 3 pins were knocked down).  When a player rolls a **spare** they receive bonus points.  The number of bonus points is the number of pins knocked down on the *next* roll.
@@ -55,7 +57,7 @@ In the final frame (the tenth frame), if a player rolls a strike or a spare they
 
 ## Your Task ##
 
-![bowling gif2](http://i.giphy.com/5xtDaru6G5ZXgf4GWze.gif)
+![lebowski gif](http://i.giphy.com/ZrxKPdRcLKAfe.gif)
 
 Write a class `Game` that has (at least) two methods: `#roll` and `#score`.
 
