@@ -1,5 +1,4 @@
-# Testing-wdf-000
- **Rspec.** *What is it good for?*
+# Rspec. What is it good for? #
 
  ![test gif](http://i.giphy.com/geozuBY5Y6cXm.gif)
 
@@ -18,7 +17,7 @@
 
 
 
-You've seen a lot of tests. They generally are broken down into 3 phases. *Setup, Trigger, and Expectation*.  Sometimes one or more of these steps will be combined. Sometimes you will need an additional *Breakdown* phase to make sure you are starting fresh on the next test-- you have to clear your database or associations.
+You've seen a lot of tests. They generally are broken down into 3 phases. *Setup, Trigger, and Expectation*.  Sometimes one or more of these steps will be combined. Sometimes you will need an additional *Breakdown* phase to make sure you are starting fresh on the next test, you'll have to clear your database or associations.
 
 Here's a typical example of an Rspec test with the phases labeled:
 ```ruby
@@ -79,30 +78,39 @@ Your job is to write an implementation of the `Game` class that can pass these t
 
 
 **Test 0**
+
+*Initial Setup*
 - Should be able to create a new instance of the `Game` class.
 
 **Test 1**
-- Can roll a gutter game.
+
+*Can roll a gutter game.*
 - A game of all 0's should score 0 ( `game.score` should return `0`).
 
 **Test 2**
-- Should be able to score a game without strikes or spares.
+
+*Should be able to score a game without strikes or spares*
 - The player rolls all 1's
 - The score should be 20.
 
 **Test 3**
-- Can roll a spare.
+
+*Can roll a spare.*
 - The player rolls two 5's, then a 3, then all gutter balls.
 - The score should be 16.
 
 **Test 4**
-- Can roll a strike.
+
+*Can roll a strike.*
 - The player rolls a strike, then a 3 and a 4, then all gutter balls.
 - The score should be 24
 
 **Test 5**
-- Can roll a perfect game.
+
+*Can roll a perfect game.*
 - The player throws 12 stikes.
 - The score should be 300.
 
-Good luck!
+Good luck! Again, please don't dive into making the most perfect and complete `Game` class from the start. Complete one test at a time and practice writing tests before implementing the methods.
+
+(project idea from [Uncle Bob's Bowling game Kata]( http://butunclebob.com/ArticleS.UncleBob.TheBowlingGameKata))
