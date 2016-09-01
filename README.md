@@ -1,7 +1,7 @@
 # Testing-wdf-000
  **Rspec.** *What is it good for?*
- ![test gif](http://i.giphy.com/geozuBY5Y6cXm.gif)
 
+ ![test gif](http://i.giphy.com/geozuBY5Y6cXm.gif)
 
 - Tests check if your work functions as intended.
 - Ensure that new features do not break existing functionality.
