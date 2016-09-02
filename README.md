@@ -1,109 +1,116 @@
-# Ruby Music Library
+# Rspec. What is it good for? #
 
-## Overview
+ ![test gif](http://i.giphy.com/geozuBY5Y6cXm.gif)
 
-You're going to be implementing a Music Library domain composed of 3 main models, `Song`, `Artist`, and `Genre` that will relate to each other and collaborate heavily. Additionally, you're going to be extracting some common functionality of those models into a module, `Concerns::Findable` and mixing that module into those classes. You'll then build a collaborating object, `MusicImporter`, that can parse a directory of MP3 files and use the filenames to create instances of `Song`, `Artist`, and `Genre`. Finally, you'll build a CLI in `bin/musiclibrary` that is powered by a `MusicLibraryController` to provide a simple CLI that let's a user browse the library of MP3s imported by song, artist, and genre.
+- Tests check if your work functions as intended.
+- Ensure that new features do not break existing functionality.
+- Constantly validating that you are writing code that works is essential to the health of your application and your team’s sanity.
+- **Rspec Resources**
 
-This is a complex lab with many parts, go slow, try to understand what you're trying to build holistically before starting. Read this entire README before jumping in. As you go from spec to spec, we recommend doing them in numbered order. 
+    http://code.tutsplus.com/articles/rspec-testing-for-beginners-part-1--cms-26716
 
-## Concerns
+    http://betterspecs.org
 
-A quick note on the placement of Modules. It's Ruby convention to put all Modules in a `concerns` folder and to be namespaced like this `Concerns::ModuleName`.
+    http://tutorials.jumpstartlab.com/topics/internal_testing/rspec_practices.html
 
-## Instructions
+    http://blog.carbonfive.com/2010/10/21/rspec-best-practices/
 
-## `Song`, `Artist`, and `Genre` Basics
 
-The first thing to do is get the basics of the main models working. Each model has almost the exact same basic requirements, so once you make `001_song_basics_spec.rb` pass by building the `Song` class, the `Artist` and `Genre` basic specs will go fast.
 
-The requirements of each model is that they can accept a name upon initialization and set that property correctly. The `name` property should be readable and writeable by the object.
+You've seen a lot of tests. They generally are broken down into 3 phases. *Setup, Trigger, and Expectation*.  Sometimes one or more of these steps will be combined. Sometimes you will need an additional *Breakdown* phase to make sure you are starting fresh on the next test, you'll have to clear your database or associations.
 
+Here's a typical example of an Rspec test with the phases labeled:
 ```ruby
-Song.new("Blank Space").name #=> "Blank Space"`
+describe '#songs' do
+    it 'keeps track of an artist\'s songs' do
+      # Setup:
+      # make the Song instances you need
+      song_one = Song.new("Rock With You")
+      song_two = Song.new("Smooth Criminal")
+
+      # Trigger:
+      # actually call our method
+      # ('artist' comes from a 'let' block defined at the top of the spec.)
+      artist.add_song(song_one)
+      artist.add_song(song_two)
+
+      # Expectations:
+      # confirm that calling your method had the intended results
+      expect(artist.songs).to eq([song_one, song_two])
+    end
+  end
 ```
 
-Additionally, each class should contain a class variable `@@all` that is set to an empty array and is prepared to store all saved instances. This class variable should be accessible via the class method `.all`.
-
-```ruby
-Song.all #=> []
-```
-
-Instances should respond to a `#save` method that adds the instance itself into the class variable `@@all`.
-
-```ruby
-Song.new("Blank Space").save
-Song.all #=> [#<Song: @name="Blank Space">]
-```
-
-The class should be able to empty it's `@@all` array via a class method `.destroy_all`.
-
-```ruby
-Song.new("Blank Space").save
-Song.all #=> [#<Song: @name="Blank Space">]
-Song.destroy_all
-Song.all #=> []
-```
-
-Finally, all classes should implement a custom constructor `.create` that instantiates an instance using `.new` but also evokes `#save` on that instance, forcing it to persist immediately.
-
-```ruby
-Song.new("Blank Space")
-Song.all #=> []
-Song.create("Blank Space")
-Song.all #=> [#<Song: @name="Blank Space">]
-```
-
-## Relationships
-
-### Songs and Artists
-
- * Songs belong to an Artist and an Artist has many songs. Adding a song to an Artist is done by calling an `#add_song` method on an instance of the `Artist` class
- * Songs can be initialized with an optional `Artist` argument
-
-### Songs and Genres
-
-  * Genres have many songs and are initialized with an empty list of songs
-  * Songs have one genre
-  * Songs can be initialized with an optional genre
-
-### Artists and Genres
-
-  * `Artist`s have many `Genre`s through `Song`. Implement a `#genres` method for this association.
-  * `Genre`s have many `Artists`s through `Song`. Implement a `#artists` method for this association.
-
-## Finding 
-
-### Song
-First implement the following two methods in your `Song` class
-
-  * Songs should have a `find_by_name` method.
-  * Songs should have a `find_or_create_by_name` method.
-
-Now that you've done that, let's generalize those methods by putting them into a module and then including that module in the `Genre` and `Artist` class.
-
-### Concerns::Findable
-
-  * Implement a generic `#find_by_name` method that uses the `.all` method defined by the class to find by name.
-  * Implement a generic `#find_or_create_by_name` method that uses the `.all` method defined by the class.
-  * Add this module to your `Genre` and `Artist` class.
 
 
-## Music Importer
+## The Rules of Bowling ##
 
-Create a Music Importer class to work with your `Song`, `Genre` and `Artist` objects to import a directory of mp3s. This class will have the following methods:
+![bowling gif](http://i.giphy.com/ADrhl0KuYglYA.gif)
 
-  * Initialize accepts a file path of mp3 files
-  * A `#files` method that will return all of the filenames
-  * Add a new method to the `Song` class called `.new_from_filename` that creates a `Song` based on a filename
-  * Add a new method to the `Song` class called `.create_from_filename` that creates a `Song` based on a filename and saves it to the `@@all` class variable
-  * In your `MusicImporter` class, add an `.import` method that imports all the files from the library and creates the `Song` objects.
+![score png](images/score.png)
 
-## CLI and Music Importer Controller
-Congrats! You've done the heavy lifting. Now let's wrap it all up in a CLI so that users can actually interact with our code.
+A game of 10-pin bowling consists of 10 frames in which the player attempts to knock down as many pins as possible.  Each frame is made up of 2 rolls.  Generally, the player is awarded one point for every pin knocked down. A **gutter ball** is the term for a roll in which 0 pins were knocked down.
 
-  * Initializes with an optional path to the music, but defaults to `./db/mp3s`. It creates a `MusicImporter` and imports the music.
-  * Add a `#call` method that starts the CLI and asks the user for input. Check out the tests for specifics
+A **spare** is when a player knocks down all 10 pins across the two rolls that make up a frame (i.e. on the first roll 7 pins were knocked down and on the second roll the remaining 3 pins were knocked down).  When a player rolls a **spare** they receive bonus points.  The number of bonus points is the number of pins knocked down on the *next* roll.
+
+A **strike** is when the player knocks down all 10 pins on the first try.  The bonus points for a strike are the number of pins knocked down on the next *two* rolls.
+
+In the final frame (the tenth frame), if a player rolls a strike or a spare they are awarded a bonus roll. No more than 3 rolls can be bowled in the tenth frame.
+
+## Your Task ##
+
+![lebowski gif](http://i.giphy.com/ZrxKPdRcLKAfe.gif)
+
+Write a class `Game` that has (at least) two methods: `#roll` and `#score`.
+
+`#roll` should take an argument of the number of pins knocked down on that roll.
+*`roll(0)` for example, would be the method call for a gutter ball.*
+
+`#score` should be called once at the end of the game. It should return the score for that game.
+
+Your task will also include writing the specs for this code.  Use the resources above to figure out how to setup your project with rspec and familiarize yourself with the rspec syntax.
+
+### Testing Requirements ###
+
+Your job is to write an implementation of the `Game` class that can pass these tests in this order.  You should write each test and then write the code that will make the test pass.  When the test passes you should move on to the next test. Write the test, make it pass, repeat. Ensure that previous tests don't break when trying to pass the next test.
+
+*Do not try to over-implement! Don't be worrying about strike functionality when trying to pass Test 1. Focus on passing the current test with the minimum amount of struggle, this is __Test Driven Development__. The tests will drive your implementation forward.*  
 
 
+**Test 0**
 
-<p data-visibility='hidden'>View <a href='https://learn.co/lessons/ruby-music-library-cli' title='Ruby Music Library'>Ruby Music Library</a> on Learn.co and start learning to code for free.</p>
+*Initial Setup*
+- Should be able to create a new instance of the `Game` class.
+
+**Test 1**
+
+*Can roll a gutter game.*
+- A game of all 0's should score 0 ( `game.score` should return `0`).
+
+**Test 2**
+
+*Should be able to score a game without strikes or spares*
+- The player rolls all 1's
+- The score should be 20.
+
+**Test 3**
+
+*Can roll a spare.*
+- The player rolls two 5's, then a 3, then all gutter balls.
+- The score should be 16.
+
+**Test 4**
+
+*Can roll a strike.*
+- The player rolls a strike, then a 3 and a 4, then all gutter balls.
+- The score should be 24
+
+**Test 5**
+
+*Can roll a perfect game.*
+- The player throws 12 stikes.
+- The score should be 300.
+
+Good luck! Again, please don't dive into making the most perfect and complete `Game` class from the start. Complete one test at a time and practice writing tests before implementing the methods.
+
+(project idea from [Uncle Bob's Bowling game Kata]( http://butunclebob.com/ArticleS.UncleBob.TheBowlingGameKata))
